@@ -60,6 +60,11 @@ class Queue
 		System.out.println("Queue is empty");
 		return -1;
 	}
+	
+	public boolean is_empty()
+	{
+		return head == null;
+	}
 }
 
 public class Main {
@@ -82,5 +87,6 @@ public class Main {
 		System.out.println(q.peek());
 		System.out.println(q.delete());
 		System.out.println(q.delete());
+		System.out.println(q.is_empty());
 	}
 }
