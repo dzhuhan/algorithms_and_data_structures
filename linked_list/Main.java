@@ -86,6 +86,20 @@ class List
 		tail.next = temp;
 		tail = temp;
 	}
+	
+	public void push(int data)
+	{
+		Node temp = new Node(data);
+		
+		if(tail == null)
+		{
+			head = tail = temp;
+			return;
+		}
+
+		temp.next = head;
+		head = temp;
+	}
 
 	public void delete(int pos)
 	{
@@ -137,6 +151,7 @@ public class Main {
 		l.append(1);
 
 		System.out.println(l.get(2));
+		System.out.println();
 		l.delete(2);
 		l.delete(1);
 		l.delete(0);
@@ -144,6 +159,7 @@ public class Main {
 
 		l.append(988);
 		l.append(1234);
+		l.push(4567);
 		l.insert(2, 222);
 		l.append(111);
 		
@@ -151,6 +167,8 @@ public class Main {
 		System.out.println(l.get(1));
 		System.out.println(l.get(2));
 		System.out.println(l.get(3));
+		System.out.println(l.get(4));
+		System.out.println();
 		
 		System.out.println(l.is_empty());
 	}
