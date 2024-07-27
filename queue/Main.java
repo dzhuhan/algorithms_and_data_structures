@@ -2,63 +2,58 @@ class Queue
 {
 	private Node head;
 	private Node tail;
-	private class Node 
+	private class Node
 	{
 		int data;
 		Node next;
-		public Node(int data)
+		
+		Node(int data)
 		{
 			this.data = data;
-			next = null;
 		}
 	}
-
-	public Queue()
+	
+	public void enqueue(int data)
 	{
-		head = null;
-		tail = null;	
-	}
-
-	public void insert(int data)
-	{
-		Node temp = new Node(data);
-		
 		if(tail == null)
 		{
-			head = tail = temp;
+			head = tail = new Node(data);
 			return;
 		}
-
-		tail.next = temp;
-		tail = temp;
+		
+		tail.next = new Node(data);
+		tail = tail.next;
 	}
-
-	public int delete()
+	
+	public int dequeue()
 	{
-		int temp;
-
+		int data;
 		if(head == null)
 		{
-			System.out.println("Queue is empty");
+			System.out.println("Queue is empty.");
 			return -1;
 		}
-
-		temp = head.data;		
+		
+		data = head.data;
 		head = head.next;
-
+		
 		if(head == null)
 			tail = null;
-
-		return temp;
+		
+		return data;
 	}
 	
 	public int peek()
 	{
-		if(head != null)
-			return head.data;
-			
-		System.out.println("Queue is empty");
-		return -1;
+		int data;
+		if(head == null)
+		{
+			System.out.println("Queue is empty.");
+			return -1;
+		}
+		
+		data = head.data;		
+		return data;
 	}
 	
 	public boolean is_empty()
@@ -72,21 +67,21 @@ public class Main {
 		
 		Queue q = new Queue();
 
-		q.insert(988);
-		q.insert(1234);
-		q.insert(1);
+		q.enqueue(988);
+		q.enqueue(1234);
+		q.enqueue(1);
 
-		System.out.println(q.delete());
-		System.out.println(q.delete());
-		System.out.println(q.delete());
-		System.out.println(q.delete());
+		System.out.println(q.dequeue());
+		System.out.println(q.dequeue());
+		System.out.println(q.dequeue());
+		System.out.println(q.dequeue());
 		System.out.println();
 
-		q.insert(222);
+		q.enqueue(222);
 		
 		System.out.println(q.peek());
-		System.out.println(q.delete());
-		System.out.println(q.delete());
+		System.out.println(q.dequeue());
+		System.out.println(q.dequeue());
 		System.out.println(q.is_empty());
 	}
 }
