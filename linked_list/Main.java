@@ -1,5 +1,6 @@
 class List
 {
+	int size;
 	private Node head;
 	private Node tail;
 	private class Node
@@ -15,6 +16,7 @@ class List
 
 	public List()
 	{
+		size = 0;
 		head = null;
 		tail = null;	
 	}
@@ -45,26 +47,37 @@ class List
 	public void insert(int pos, int data)
 	{
 		Node temp = head;
-
-		if(pos == 0)
+		if(head == null)
 		{
 			head = tail = new Node(data);
+			size++;
 			return;
-		}	
+		}
+		else if(pos == 0)
+		{
+			Node n = new Node(data);
+			n.next = head;
+			head = n;
+			size++;
+			return;
+		}
+		else if(pos == size)
+		{
+			tail.next = new Node(data);
+			tail = tail.next;
+			size++;
+			return;
+		}
 		
-		--pos;
-		int i = 0;
+		int i = 1;
 		while(temp != null)
 		{
 			if(i == pos)
 			{
 				Node n = new Node(data);
 				n.next = temp.next;
-
-				if(n.next == null)
-					tail = n;
-
 				temp.next = n;
+				size++;
 				return;
 			}
 
@@ -76,6 +89,7 @@ class List
 	public void append(int data)
 	{
 		Node temp = new Node(data);
+		size++;
 		
 		if(tail == null)
 		{
@@ -90,6 +104,7 @@ class List
 	public void push(int data)
 	{
 		Node temp = new Node(data);
+		size++;
 		
 		if(tail == null)
 		{
@@ -106,19 +121,18 @@ class List
 		Node temp = head;
 
 		if(head == null)
-		{
-			tail = null;
 			return;
-		}
 
 		if(pos == 0)
 		{
 			head = head.next;
+			if(head == null)
+				tail = null;
+			size--;
 			return;
 		}
 		
-		--pos;
-		int i = 0;
+		int i = 1;
 		while(temp != null)
 		{
 			if(i == pos && temp.next != null)
@@ -127,6 +141,7 @@ class List
 					tail = temp;
 				
 				temp.next = temp.next.next;
+				size--;
 				return;
 			}
 
@@ -162,12 +177,18 @@ public class Main {
 		l.push(4567);
 		l.insert(2, 222);
 		l.append(111);
+		l.insert(0, 100);
+		l.insert(6, 777);
+		l.append(4000);
 		
 		System.out.println(l.get(0));
 		System.out.println(l.get(1));
 		System.out.println(l.get(2));
 		System.out.println(l.get(3));
 		System.out.println(l.get(4));
+		System.out.println(l.get(5));
+		System.out.println(l.get(6));
+		System.out.println(l.get(7));
 		System.out.println();
 		
 		System.out.println(l.is_empty());
