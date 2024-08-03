@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-class Bubblesort {
+class SelectionSort {
     static void sort(int a[])
     {
         int temp;
@@ -19,7 +19,7 @@ class Bubblesort {
 public class Main {
     public static void main(String args[]) {
         int a[] = {2345, 2, 345, 23, 123, 33, 11, 1};
-        Bubblesort.sort(a);
+        SelectionSort.sort(a);
         System.out.println(Arrays.toString(a));
     }
 }
